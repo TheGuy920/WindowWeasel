@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.IO;
 
 namespace WindowWeasel;
 
@@ -11,7 +12,7 @@ public class ProcessWeasel
         ProcessWeasel.LaunchProcess(path, string.Join(' ', arguments));
 
     public static IWeaselWindow LaunchProcess(string path, string arguments) =>
-        ProcessWeasel.LaunchProcess(new ProcessStartInfo() { FileName = path, Arguments = arguments });
+        ProcessWeasel.LaunchProcess(new ProcessStartInfo() { FileName = path, Arguments = arguments, WorkingDirectory = Path.GetDirectoryName(path) });
 
     public static IWeaselWindow LaunchProcess(ProcessStartInfo startInfo)
     {
